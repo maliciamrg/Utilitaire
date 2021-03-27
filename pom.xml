@@ -80,7 +80,7 @@
         <repository>
             <id>github</id>
             <name>maliciamrg</name>
-            <url>https://maven.pkg.github.com/maliciamrg/HelloMaven</url>
+            <url>https://maven.pkg.github.com/maliciamrg/Utilitaire</url>
         </repository>
     </distributionManagement>
 
