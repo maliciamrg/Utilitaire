@@ -13,8 +13,9 @@ import java.text.NumberFormat;
 public class Output implements StreamingProcessOwner {
 
     private static final Logger LOGGER = LogManager.getLogger(Output.class);
-    private int i = 0;
     NumberFormat formatter = new DecimalFormat("00000");
+    private int i = 0;
+    public String resumer;
 
     public StreamingProcessOutputType getOutputType() {
         return StreamingProcessOutputType.BOTH;
@@ -24,8 +25,12 @@ public class Output implements StreamingProcessOwner {
         if (stdout) {
             i++;
             String lline = "[" + formatter.format(i) + "] " + line;
-            if (line.contains("total size is") || line.contains("bytes  received") || line.contains("deleting")) {
+            boolean resumeEnd = line.contains("total size is") || line.contains("bytes  received");
+            if (resumeEnd || line.contains("deleting")) {
                 LOGGER.info(lline);
+                if (resumeEnd) {
+                    resumer = resumer + lline + "\n";
+                }
             } else {
                 if ((i % 10) == 0) {
                     LOGGER.info(lline);
