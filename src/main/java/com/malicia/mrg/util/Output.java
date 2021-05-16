@@ -15,7 +15,7 @@ public class Output implements StreamingProcessOwner {
     private static final Logger LOGGER = LogManager.getLogger(Output.class);
     NumberFormat formatter = new DecimalFormat("00000");
     private int i = 0;
-    public String resumer;
+    public String resumer ="";
 
     public StreamingProcessOutputType getOutputType() {
         return StreamingProcessOutputType.BOTH;
