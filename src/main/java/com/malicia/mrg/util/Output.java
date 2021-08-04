@@ -16,6 +16,11 @@ public class Output implements StreamingProcessOwner {
     NumberFormat formatter = new DecimalFormat("00000");
     private int i = 0;
     public String resumer ="";
+    public String[] resumerString;
+
+    public Output(String[] resumerString) {
+        this.resumerString = resumerString;
+    }
 
     public StreamingProcessOutputType getOutputType() {
         return StreamingProcessOutputType.BOTH;
@@ -25,7 +30,10 @@ public class Output implements StreamingProcessOwner {
         if (stdout) {
             i++;
             String lline = "[" + formatter.format(i) + "] " + line;
-            boolean resumeEnd = line.contains("total size is") || line.contains("bytes  received");
+            boolean resumeEnd = false;
+            for (String element : resumerString) {
+                resumeEnd = resumeEnd || line.contains(element);
+            }
             if (resumeEnd || line.contains("deleting")) {
                 LOGGER.info(lline);
                 if (resumeEnd) {
