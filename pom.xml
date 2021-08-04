@@ -6,7 +6,7 @@
 
     <groupId>github.maliciamrg</groupId>
     <artifactId>utilitaire</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <dependencies>
         <dependency>
             <groupId>com.github.fracpete</groupId>
