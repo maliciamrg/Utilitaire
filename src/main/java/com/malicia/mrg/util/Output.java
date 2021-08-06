@@ -73,8 +73,11 @@ public class Output implements StreamingProcessOwner {
             String[] res1 = line.split("-chk=");
             String[] nb = res1[1].split("[\\/)]");
             progress.setValue(Integer.valueOf(nb[0]));
-            progress.setMaximum(Integer.valueOf(nb[1]));
 
+            Integer maximum = Integer.valueOf(nb[1]);
+            if (maximum>progress.getMaximum()) {
+                progress.setMaximum(maximum);
+            }
         }
     }
 }
